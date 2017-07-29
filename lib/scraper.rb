@@ -1,18 +1,37 @@
 =begin
   url: https://en.wikipedia.org/wiki/List_of_members_of_the_Forbes_400
 
+  url: 'https://www.meetup.com/find/events/?allMeetups=false&keywords=javascript&radius=2&userFreeform=London%2C+United+Kingdom'
+
 =end
 
 class Scraper
 
-  def self.fetch_rich_list(url)
-    doc = Nokogiri::HTML(open('https://en.wikipedia.org/wiki/List_of_members_of_the_Forbes_400'))
-    table = doc.css('div.mw-content-ltr').css('table.wikitable')[1]
-    rows = table.css('tr') # 1st row consists of headers
-    rows.each do |row|
-      puts row
-      puts '-----------------------------------------'
-    end
+  def self.fetch_meetup_list(url)
+    doc = Nokogiri::HTML(open(url))
+    items = doc.css('.searchResults .event-listing-container .event-listing .row-item')
+
+    count = 1
+    items.collect do |item|
+      event = {}
+      title = item.css('.chunk a.event span').inner_text
+      if title != ''
+        event[:count] = count
+        event[:title] = title
+        event[:organiser] = item.css('.chunk .text--labelSecondary a span').inner_text
+        event[:url] = item.css('a').first.attr('href')
+        num_attending = item.css('.text--secondary .attendee-count').inner_text
+        event[:num_attending] = num_attending.slice(0, 6).gsub(/[^\d]/, '')
+        count += 1
+      end
+      time = item.css('time').text
+      if time != ''
+        event[:time] = time
+        event[:date] = item.css('time').attr('datetime')
+      end
+      event
+    end.select {|event| event.size > 0 && event[:count]}
+
   end
 
 end
