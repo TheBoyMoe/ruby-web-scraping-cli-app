@@ -2,6 +2,7 @@
   url: https://en.wikipedia.org/wiki/List_of_members_of_the_Forbes_400
 
 =end
+
 class Scraper
 
   def self.fetch_rich_list(url)
@@ -13,4 +14,5 @@ class Scraper
       puts '-----------------------------------------'
     end
   end
+
 end
