@@ -3,7 +3,7 @@
 Examples:
 [1] https://github.com/learn-co-curriculum/now-playing-cli-gem
 [2] https://github.com/dannyd4315/worlds-best-restaurants-cli-gem
-[3] https://github.com/learn-co-curriculum/daily_deal/blob/master/NOTES.md
+[3] https://github.com/learn-co-curriculum/daily_deal
 
 Articles:
 [1] http://ruby.bastardsbook.com/chapters/html-parsing/ guide to using nokogiri to scrape a web site
