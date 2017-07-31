@@ -6,7 +6,8 @@
 =end
 
 class Scraper
-
+  # TODO - remove count?
+  # TODO - refactor url to accept entered fields, seach keyword and city
   def self.fetch_meetup_list(url)
     doc = Nokogiri::HTML(open(url))
     items = doc.css('.searchResults .event-listing-container .event-listing')
@@ -29,11 +30,31 @@ class Scraper
         event[:time] = time
         event[:date] = item.css('time').attr('datetime').value
       end
-      event[:location] = item.css('.text--secondary')[1].css('a').text.strip
-      puts "#{event}"
+      event[:location] = item.css('.text--secondary')[1].css('a').text
+      # puts "#{event}"
       event
     end.select {|event| event.size > 0 && event[:count]}
-
   end
+
+  def self.fetch_event_details(url)
+    doc = Nokogiri::HTML(open(url))
+    items = doc.css('.doc-content')
+    event = {}
+    items.each do |item|
+      event[:title] = item.css('#event-title h1').text
+      event[:date] = item.css('#event-start-time h3').text
+      event_start_time = item.css('#event-start-time span').text
+      event_end_time = item.css('#event-end-time span').text
+      event[:time] = "#{event_start_time} to #{event_end_time}"
+      event[:organiser] = item.css('#event-where-display h3 a').text
+      event[:address] = item.css('#event-where-display .event-where-address').text.gsub(/\(map\)/, '').strip
+      description_text = ''
+      descs = item.css('#event-description-wrap p')
+      descs.each {|desc| description_text += desc.text.gsub(/â\u0080¢/, '') + ' '}
+      event[:description] = description_text
+    end
+    event
+  end
+
 
 end
