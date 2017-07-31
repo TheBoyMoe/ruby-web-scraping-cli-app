@@ -6,7 +6,6 @@
 =end
 
 class Scraper
-  # TODO - remove count?
   # TODO - refactor url to accept entered fields, seach keyword and city
   def self.fetch_meetup_list(url)
     doc = Nokogiri::HTML(open(url))
