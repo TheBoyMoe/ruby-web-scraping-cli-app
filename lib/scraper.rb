@@ -9,13 +9,11 @@ class Scraper
 
   def self.fetch_meetup_list(url)
     doc = Nokogiri::HTML(open(url))
-    # TODO change to event-listing not row-item
-    items = doc.css('.searchResults .event-listing-container .event-listing .row-item')
+    items = doc.css('.searchResults .event-listing-container .event-listing')
 
     count = 1
     items.collect do |item|
       event = {}
-      date_time = {}
       title = item.css('.chunk a.event span').inner_text
       if title != ''
         event[:count] = count
@@ -23,16 +21,15 @@ class Scraper
         event[:organiser] = item.css('.chunk .text--labelSecondary a span').inner_text
         event[:url] = item.css('a').first.attr('href')
         num_attending = item.css('.text--secondary .attendee-count').inner_text
-        event[:num_attending] = num_attending.slice(0, 6).gsub(/[^\d]/, '')
+        event[:num_attending] = num_attending.strip.slice(0, 4).gsub(/[^\d]/, '')
         count += 1
       end
-      time = item.css('time').text
+      time = item.css('.text--secondary time').text
       if time != ''
-        date_time[:count] = count
-        date_time[:time] = time
-        date_time[:date] = item.css('time').attr('datetime')
+        event[:time] = time
+        event[:date] = item.css('time').attr('datetime').value
       end
-
+      event[:location] = item.css('.text--secondary')[1].css('a').text.strip
       puts "#{event}"
       event
     end.select {|event| event.size > 0 && event[:count]}

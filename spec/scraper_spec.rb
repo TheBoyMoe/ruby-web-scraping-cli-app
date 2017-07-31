@@ -14,7 +14,6 @@ describe 'Scraper' do
       expect(scraped_events.first).to have_key(:num_attending)
       expect(scraped_events.first).to have_key(:time)
       expect(scraped_events.first).to have_key(:date)
-      # puts "#{scraped_events.first}"
     end
   end
 
