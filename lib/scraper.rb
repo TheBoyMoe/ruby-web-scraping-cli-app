@@ -30,7 +30,7 @@ class Scraper
         event[:date] = item.css('time').attr('datetime').value
       end
       event[:location] = item.css('.text--secondary')[1].css('a').text.strip
-      puts "#{event}"
+      # puts "#{event}"
       event
     end
     #.select {|event| event.size > 0 && event[:count]}
@@ -53,7 +53,7 @@ class Scraper
       descs.each {|desc| description_text += desc.text.gsub(/â\u0080¢/, '') + ' '}
       event[:description] = description_text
     end
-    puts "#{event}"
+    # puts "#{event}"
     event
   end
 
