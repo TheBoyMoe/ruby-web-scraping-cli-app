@@ -1,6 +1,6 @@
 class MeetupListingController
 
-  def call
+  def get_user_input
     puts 'Search Meetup.com for meetups in you local area'
     puts 'Enter the meetup subject'
     subject = gets.chomp
@@ -9,20 +9,18 @@ class MeetupListingController
     puts 'How many miles from your town are you willing to travel'
     miles = gets.chomp.to_i
     miles = 1 if miles == 0
-    self.create_events_from_hashes(subject, town, miles)
+
+    base_url = 'https://www.meetup.com/find/events/?allMeetups=false&keywords='
+    "#{base_url}#{subject}&radius=#{miles}&userFreeForm=#{town}"
   end
 
   # fetch the meetup events
-  def search_meetup(subject, town, distance)
-    base_url = 'https://www.meetup.com/find/events/?allMeetups=false&keywords='
-    url = "#{base_url}#{subject}&radius=#{distance}&userFreeForm#{town}"
+  def search_meetup(url)
     Scraper.fetch_meetup_list(url)
   end
 
   # create event instances
-  def create_events_from_hashes(subject, town, miles)
-    event_hashes = self.search_meetup(subject, town, miles)
-    # instantiate event objects & display meetup list
+  def create_events_from_hashes(event_hashes)
     Event.create_from_collection(event_hashes)
   end
 
