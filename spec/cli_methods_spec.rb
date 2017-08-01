@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'MeetupListingController' do
-  let(:meetup_list_controller) {MeetupListingController.new}
+  let(:meetup_controller) {MeetupListingController.new}
 
   let!(:event_hashes) {[
       {
@@ -26,19 +26,19 @@ describe 'MeetupListingController' do
 
   describe '#get_user_input' do
     it 'prompts user to enter the necessary details to execute a search of the meetup site' do
-      allow(meetup_list_controller).to receive(:gets).and_return('url')
-      expect($stdout).to receive(:puts).with('Search Meetup.com for meetups in you local area')
+      allow(meetup_controller).to receive(:gets).and_return('url')
+      expect($stdout).to receive(:puts).with('Search Meetup.com for events in you local area')
       expect($stdout).to receive(:puts).with('Enter the meetup subject')
       expect($stdout).to receive(:puts).with('Enter your town')
       expect($stdout).to receive(:puts).with('How many miles from your town are you willing to travel')
-      meetup_list_controller.get_user_input
+      meetup_controller.get_user_input
     end
   end
 
   describe '#search_meetup' do
     it 'execute the search using the input provided by the user' do
       url = 'https://www.meetup.com/find/events/?allMeetups=false&keywords=javascript&radius=2&userFreeform=London%2C+United+Kingdom'
-      events = meetup_list_controller.search_meetup(url)
+      events = meetup_controller.search_meetup(url)
       expect(events).to be_a(Array)
 
       expect(events.first).to have_key(:title)
@@ -53,7 +53,7 @@ describe 'MeetupListingController' do
 
   describe '#create_events_from_hashes' do
     it 'convert event hashes returned by search into collection of event instances' do
-      event_instances = meetup_list_controller.create_events_from_hashes(event_hashes)
+      event_instances = meetup_controller.create_events_from_hashes(event_hashes)
       expect(event_instances).to be_a(Array)
       expect(event_instances.first).to be_an_instance_of(Event)
     end
@@ -83,10 +83,25 @@ describe 'MeetupListingController' do
       expect($stdout).to receive(:puts).with('Location: Hoxton')
       expect($stdout).to receive(:puts).with('------------------------------')
 
-      meetup_list_controller.print_meetup_events
+      meetup_controller.print_meetup_events
     end
   end
 
-  describe '#fetch_'
+  describe '#pick_meetup_event' do
+    it 'prompts the user to select a meetup to get more details, start the search process again or exit' do
+      allow(meetup_controller).to receive(:gets).and_return('Testing for #pick_meetup_event')
+      expect($stdout).to receive(:puts).with('Enter the number of the event you want more detail on')
+      expect($stdout).to receive(:puts).with("Or enter '0' to search again")
+
+      meetup_controller.pick_meetup_event
+    end
+
+  end
+
+  # describe '#fetch_full_details' do
+  #   it 'download the full details for the event, and update it\'s instance' do
+  #
+  #   end
+  # end
 
 end
