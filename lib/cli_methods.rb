@@ -1,5 +1,6 @@
 class MeetupListingController
 
+  # capture user input returning search url
   def get_user_input
     puts 'Search Meetup.com for meetups in you local area'
     puts 'Enter the meetup subject'
