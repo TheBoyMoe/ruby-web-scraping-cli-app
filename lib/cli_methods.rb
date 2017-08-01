@@ -52,6 +52,7 @@ class MeetupListingController
       puts "Date: #{event.date.slice(0, 10)}"
       puts "Time: #{event.time}"
       puts "Number attending: #{event.num_attending}"
+      puts "Url: #{event.url}"
       puts "Location: #{event.location}"
       puts "------------------------------"
     end

@@ -19,7 +19,7 @@ describe 'MeetupListingController' do
         date: '2017-07-29T23:30:00+01:00',
         time: '6:30 PM',
         num_attending: 8,
-        url: 'https://www.meetup.com/founderscoders/events/241027536',
+        url: 'https://www.meetup.com/ruby-hack-night/events/230852789',
         location: 'Hoxton'
       }
     ]}
@@ -70,6 +70,7 @@ describe 'MeetupListingController' do
       expect($stdout).to receive(:puts).with('Date: 2017-07-28')
       expect($stdout).to receive(:puts).with('Time: 6:30 PM')
       expect($stdout).to receive(:puts).with('Number attending: 19')
+      expect($stdout).to receive(:puts).with('Url: https://www.meetup.com/founderscoders/events/241027536')
       expect($stdout).to receive(:puts).with('Location: Bethnel Green')
       expect($stdout).to receive(:puts).with('------------------------------')
       expect($stdout).to receive(:puts).with('------------------------------')
@@ -78,11 +79,14 @@ describe 'MeetupListingController' do
       expect($stdout).to receive(:puts).with('Date: 2017-07-29')
       expect($stdout).to receive(:puts).with('Time: 6:30 PM')
       expect($stdout).to receive(:puts).with('Number attending: 8')
+      expect($stdout).to receive(:puts).with('Url: https://www.meetup.com/ruby-hack-night/events/230852789')
       expect($stdout).to receive(:puts).with('Location: Hoxton')
       expect($stdout).to receive(:puts).with('------------------------------')
 
       meetup_list_controller.print_meetup_events
     end
   end
+
+  describe '#fetch_'
 
 end
