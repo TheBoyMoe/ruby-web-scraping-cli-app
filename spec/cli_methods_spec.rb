@@ -59,28 +59,29 @@ describe 'MeetupListingController' do
     end
   end
 
-  # describe '#print_meetup_events' do
-  #   Event.class_variable_set(:@@all, [])
-  #
-  #   it 'prints out events matching the search criteria returned by date' do
-  #     expect($stdout).to receive(:puts).with('1. Coding for everyone')
-  #     expect($stdout).to receive(:puts).with('Founders & Coders')
-  #     expect($stdout).to receive(:puts).with('2017-07-28')
-  #     expect($stdout).to receive(:puts).with('6:30 PM')
-  #     expect($stdout).to receive(:puts).with(19)
-  #     expect($stdout).to receive(:puts).with('Bethnel Green')
-  #     expect($stdout).to receive(:puts).with('------------------------------')
-  #     expect($stdout).to receive(:puts).with('2. Ruby Hack Night')
-  #     expect($stdout).to receive(:puts).with('London Ruby')
-  #     expect($stdout).to receive(:puts).with('2017-07-29')
-  #     expect($stdout).to receive(:puts).with('6:30 PM')
-  #     expect($stdout).to receive(:puts).with(9)
-  #     expect($stdout).to receive(:puts).with('Hoxton')
-  #     expect($stdout).to receive(:puts).with('------------------------------')
-  #
-  #     meetup_list_controller.create_events_from_hashes(event_array)
-  #     meetup_list_controller.print_meetup_events
-  #   end
-  # end
+  describe '#print_meetup_events' do
+
+    it 'prints out events matching the search criteria returned by date' do
+      Event.class_variable_set(:@@all, [])
+      Event.create_from_collection(event_hashes)
+
+      expect($stdout).to receive(:puts).with('1. Coding for everyone')
+      expect($stdout).to receive(:puts).with('Founders & Coders')
+      expect($stdout).to receive(:puts).with('2017-07-28')
+      expect($stdout).to receive(:puts).with('6:30 PM')
+      expect($stdout).to receive(:puts).with(19)
+      expect($stdout).to receive(:puts).with('Bethnel Green')
+      expect($stdout).to receive(:puts).with('------------------------------')
+      expect($stdout).to receive(:puts).with('2. Ruby Hack Night')
+      expect($stdout).to receive(:puts).with('London Ruby')
+      expect($stdout).to receive(:puts).with('2017-07-29')
+      expect($stdout).to receive(:puts).with('6:30 PM')
+      expect($stdout).to receive(:puts).with(8)
+      expect($stdout).to receive(:puts).with('Hoxton')
+      expect($stdout).to receive(:puts).with('------------------------------')
+
+      meetup_list_controller.print_meetup_events
+    end
+  end
 
 end

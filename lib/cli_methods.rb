@@ -26,8 +26,19 @@ class MeetupListingController
   end
 
 
-  # TODO print event collection
-
+  # print event collection
+  def print_meetup_events
+    events = Event.all
+    events.each_with_index do |event, i|
+      puts "#{i + 1}. #{event.title}"
+      puts "#{event.organiser}"
+      puts "#{event.date.slice(0, 10)}"
+      puts "#{event.time}"
+      puts "#{event.num_attending}".to_i
+      puts "#{event.location}"
+      puts "------------------------------"
+    end
+  end
 
   # TODO - download the event's details
 
