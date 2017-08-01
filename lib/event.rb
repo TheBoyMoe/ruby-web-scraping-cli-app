@@ -10,7 +10,7 @@ class Event
   end
 
   def self.create_from_collection(events_array)
-    events_array.each {|event_hash| self.new(event_hash)}
+    events_array.collect {|event_hash| self.new(event_hash)}
   end
 
   def self.all
