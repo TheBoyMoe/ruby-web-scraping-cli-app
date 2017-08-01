@@ -25,24 +25,36 @@ class MeetupListingController
     Event.create_from_collection(event_hashes)
   end
 
-
   # print event collection
   def print_meetup_events
     events = Event.all
-    events.each_with_index do |event, i|
-      puts "#{i + 1}. #{event.title}"
-      puts "#{event.organiser}"
-      puts "#{event.date.slice(0, 10)}"
-      puts "#{event.time}"
-      puts "#{event.num_attending}".to_i
-      puts "#{event.location}"
-      puts "------------------------------"
+    if events.size > 0
+      print_events(events)
+    else
+      puts "No matching results found, try again."
     end
+
   end
+
 
   # TODO - download the event's details
 
 
   # TODO print event detatils
+
+
+  private
+  def print_events(events)
+    events.each_with_index do |event, i|
+      puts "------------------------------"
+      puts "#{i + 1}. #{event.title}"
+      puts "Organiser: #{event.organiser}"
+      puts "Date: #{event.date.slice(0, 10)}"
+      puts "Time: #{event.time}"
+      puts "Number attending: #{event.num_attending}"
+      puts "Location: #{event.location}"
+      puts "------------------------------"
+    end
+  end
 
 end
