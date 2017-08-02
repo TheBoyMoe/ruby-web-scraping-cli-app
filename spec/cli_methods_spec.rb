@@ -27,7 +27,7 @@ describe 'MeetupListingController' do
   describe '#get_user_input' do
     it 'prompts user to enter the necessary details to execute a search of the meetup site' do
       allow(meetup_controller).to receive(:gets).and_return('url')
-      expect($stdout).to receive(:puts).with('Search Meetup.com for events in you local area')
+      expect($stdout).to receive(:puts).with('Search Meetup.com for events in your local area')
       expect($stdout).to receive(:puts).with('Enter the meetup subject')
       expect($stdout).to receive(:puts).with('Enter your town')
       expect($stdout).to receive(:puts).with('How many miles from your town are you willing to travel')
@@ -90,7 +90,7 @@ describe 'MeetupListingController' do
   describe '#pick_meetup_event' do
     it 'prompts the user to select a meetup to get more details, start the search process again or exit' do
       allow(meetup_controller).to receive(:gets).and_return('Testing for #pick_meetup_event')
-      expect($stdout).to receive(:puts).with('Enter the number of the event you want more detail on')
+      expect($stdout).to receive(:puts).with('Enter the number of the event you want more details on')
       expect($stdout).to receive(:puts).with("Or enter '0' to search again")
 
       meetup_controller.pick_meetup_event

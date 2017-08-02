@@ -3,4 +3,4 @@
 require_relative '../config/environment'
 
 # launch cli app
-CommandLineInterface.new.run
+CommandLineInterface.new

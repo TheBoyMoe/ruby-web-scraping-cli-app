@@ -2,7 +2,7 @@ class MeetupListingController
 
   # capture user input returning search url
   def get_user_input
-    puts 'Search Meetup.com for events in you local area'
+    puts 'Search Meetup.com for events in your local area'
     puts 'Enter the meetup subject'
     subject = gets.chomp
     puts 'Enter your town'
@@ -25,37 +25,12 @@ class MeetupListingController
     Event.create_from_collection(event_hashes)
   end
 
-  # print event collection
-  def print_meetup_events
-    events = Event.all
-    if events.size > 0
-      print_events(events)
-    else
-      puts "No matching results found, try again."
-    end
-
-  end
-
-  # prompt user to view more details on event of interest
-  def pick_meetup_event
-    puts 'Enter the number of the event you want more detail on'
-    puts "Or enter '0' to search again"
-    input = gets.chomp.to_i
-    # if input == 0
-    #   self.get_user_input
-    # else
-    #   url = Event.all[input - 1].url
-    #
-    # end
-  end
-
   # TODO - download the event's details
 
 
   # TODO print event detatils
 
 
-  private
   def print_events(events)
     events.each_with_index do |event, i|
       puts "------------------------------"
