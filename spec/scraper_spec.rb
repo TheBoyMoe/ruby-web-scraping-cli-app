@@ -15,7 +15,6 @@ describe 'Scraper' do
       url = './fixtures/meetup/index.html'
       scraped_events = Scraper.fetch_meetup_list(url)
       expect(scraped_events).to be_a(Array)
-      #expect(scraped_events.first).to have_key(:count)
       expect(scraped_events.first).to have_key(:title)
       expect(scraped_events.first).to have_key(:organiser)
       expect(scraped_events.first).to have_key(:url)
