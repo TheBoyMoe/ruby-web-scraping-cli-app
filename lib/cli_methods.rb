@@ -1,4 +1,4 @@
-class MeetupListingController
+class CliMethods
 
   # capture user input returning search url
   def get_user_input
@@ -30,9 +30,14 @@ class MeetupListingController
 
   # TODO print event detatils
 
+  def pick_meetup_event
+    puts 'Enter the number of the event you want more details on'
+    puts "Or enter '0' to search again"
+    gets.chomp
+  end
 
-  def print_events(events)
-    events.each_with_index do |event, i|
+  def print_events
+    Event.all.each_with_index do |event, i|
       puts "------------------------------"
       puts "#{i + 1}. #{event.title}"
       puts "Organiser: #{event.organiser}"
