@@ -27,9 +27,10 @@ class CommandLineInterface
     input = self.climethods.pick_meetup_event
     if (input.to_i >= 1 && input.to_i <= Event.all.size)
       url = Event.all[input.to_i - 1].url
-      puts "Selection url #{url}"
-      # TODO down load event's details
 
+      # TODO down load event's details
+      event = self.climethods.fetch_event_details(url)
+      puts "#{event}"
       # TODO print said event
     else
       self.run

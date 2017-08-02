@@ -38,7 +38,7 @@ class Scraper
 
   def self.fetch_event_details(url)
     doc = Nokogiri::HTML(open(url))
-    items = doc.css('.doc-content')
+    items = doc.css('#event-content')
     event = {}
     items.each do |item|
       #event[:title] = item.css('#event-title h1').text
@@ -51,9 +51,8 @@ class Scraper
       description_text = ''
       descs = item.css('#event-description-wrap p')
       descs.each {|desc| description_text += desc.text.gsub(/â\u0080¢/, '') + ' '}
-      event[:description] = description_text
+      event[:description] = description_text.strip
     end
-    # puts "#{event}"
     event
   end
 

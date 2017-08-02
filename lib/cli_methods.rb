@@ -26,7 +26,9 @@ class CliMethods
   end
 
   # TODO - download the event's details
-
+  def fetch_event_details(url)
+    Scraper.fetch_event_details(url)
+  end
 
   # TODO print event detatils
 

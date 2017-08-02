@@ -96,10 +96,17 @@ describe 'CliMethods' do
     end
   end
 
-  # describe '#fetch_full_details' do
-  #   it 'download the full details for the event, and update it\'s instance' do
-  #
-  #   end
-  # end
+  describe '#fetch_event_details' do
+    it 'download the full details for the event' do
+      url = 'https://www.meetup.com/founderscoders/events/241763286/'
+      event = climethods.fetch_event_details(url)
+
+      expect(event).to be_a(Hash)
+      expect(event).to have_key(:date)
+      expect(event).to have_key(:time)
+      expect(event).to have_key(:address)
+      expect(event).to have_key(:description)
+    end
+  end
 
 end
