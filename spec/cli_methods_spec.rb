@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'CliMethods' do
   let(:climethods) {CliMethods.new}
 
-  let!(:event_hashes) {[
+  let(:event_hashes) {[
     {
       title: 'Coding for everyone',
       organiser: 'Founders & Coders',
@@ -23,6 +23,18 @@ describe 'CliMethods' do
       location: 'Hoxton'
     }
   ]}
+
+  let(:event_instance) {Event.new({
+    title: 'Coding for everyone',
+    organiser: 'Founders & Coders',
+    date: 'Monday, July 31, 2017',
+    time: '6:30 PM to 8:00 PM',
+    num_attending: 19,
+    url: 'https://www.meetup.com/founderscoders/events/241027536',
+    location: 'Bethnel Green',
+    address: '14 Palmers Road, E2 0SY, London',
+    description: "Come and join us for our regular Monday evening meetup and participate in any one of a number of peer-led JavaScript coding activities, including: • Free Code Camp projects • Solving and creating Codewars katas • Codecademy • Eloquent Javascript • CS50 This meetup is for everyone who wants to learn to code. During the meetup we encourage participants to work together with another meetup attendee on one laptop (pair programming). Students from the current cohort of Founders & Coders will be available for questions and support. Please note that laptops aren't provided, but since we encourage pair programming you are welcome to join us without a laptop and work with another participant. Founders and Coders, Code of Conduct: https://github.com/codingforeveryone/code-of-conduct Our community is dedicated to providing a harassment-free experience for everyone. We do not tolerate harassment of community members in any form. Participants violating these rules may be sanctioned or expelled from the event and any future events, as well as from the community itself."
+  })}
 
   describe '#get_user_input' do
     it 'prompts user to enter the necessary details to execute a search of the meetup site' do
@@ -106,6 +118,23 @@ describe 'CliMethods' do
       expect(event).to have_key(:time)
       expect(event).to have_key(:address)
       expect(event).to have_key(:description)
+    end
+  end
+
+  describe '#print_event' do
+    it "text" do
+      expect($stdout).to receive(:puts).with('------------------------------')
+      expect($stdout).to receive(:puts).with('Title: Coding for everyone')
+      expect($stdout).to receive(:puts).with('Organiser: Founders & Coders')
+      expect($stdout).to receive(:puts).with('Date: Monday, July 31, 2017')
+      expect($stdout).to receive(:puts).with('Time: 6:30 PM to 8:00 PM')
+      expect($stdout).to receive(:puts).with('Number attending: 19')
+      expect($stdout).to receive(:puts).with('Location: Bethnel Green')
+      expect($stdout).to receive(:puts).with('Address: 14 Palmers Road, E2 0SY, London')
+      expect($stdout).to receive(:puts).with("Description: Come and join us for our regular Monday evening meetup and participate in any one of a number of peer-led JavaScript coding activities, including: • Free Code Camp projects • Solving and creating Codewars katas • Codecademy • Eloquent Javascript • CS50 This meetup is for everyone who wants to learn to code. During the meetup we encourage participants to work together with another meetup attendee on one laptop (pair programming). Students from the current cohort of Founders & Coders will be available for questions and support. Please note that laptops aren't provided, but since we encourage pair programming you are welcome to join us without a laptop and work with another participant. Founders and Coders, Code of Conduct: https://github.com/codingforeveryone/code-of-conduct Our community is dedicated to providing a harassment-free experience for everyone. We do not tolerate harassment of community members in any form. Participants violating these rules may be sanctioned or expelled from the event and any future events, as well as from the community itself.")
+      expect($stdout).to receive(:puts).with('------------------------------')
+
+      climethods.print_event(event_instance)
     end
   end
 

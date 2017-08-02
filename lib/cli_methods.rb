@@ -25,12 +25,24 @@ class CliMethods
     Event.create_from_collection(event_hashes)
   end
 
-  # TODO - download the event's details
+  # download the event's details
   def fetch_event_details(url)
     Scraper.fetch_event_details(url)
   end
 
-  # TODO print event detatils
+  # print event detatils
+  def print_event(event)
+    puts '------------------------------'
+    puts "Title: #{event.title}"
+    puts "Organiser: #{event.organiser}"
+    puts "Date: #{event.date}"
+    puts "Time: #{event.time}"
+    puts "Number attending: #{event.num_attending}"
+    puts "Location: #{event.location}"
+    puts "Address: #{event.address}"
+    puts "Description: #{event.description}"
+    puts '------------------------------'
+  end
 
   def pick_meetup_event
     puts 'Enter the number of the event you want more details on'
