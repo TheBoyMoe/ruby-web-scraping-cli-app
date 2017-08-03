@@ -95,9 +95,10 @@ describe 'CliMethods' do
   describe '#pick_meetup_event' do
     it 'prompts the user to select a meetup to get more details, start the search process again or exit' do
       allow(climethods).to receive(:gets).and_return('Testing for #pick_meetup_event')
-      expect($stdout).to receive(:puts).with('Enter the number of the event you want more details on')
-      expect($stdout).to receive(:puts).with("Or enter '0' to search again")
-
+      expect($stdout).to receive(:puts).with('Enter the number of the event to view more details')
+      expect($stdout).to receive(:puts).with("Enter '0' to search again")
+      expect($stdout).to receive(:puts).with("To quit, hit 'enter'")
+      expect($stdout).to receive(:puts).with('What would you like to do?')
       climethods.pick_meetup_event
     end
   end

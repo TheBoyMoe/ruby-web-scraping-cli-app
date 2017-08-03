@@ -21,7 +21,7 @@ class CommandLineInterface
     end
     self.climethods.print_events
     self.print_meetup_event
-    self.run
+    #self.run
   end
 
   def print_meetup_event
@@ -29,19 +29,20 @@ class CommandLineInterface
     if (input.to_i >= 1 && input.to_i <= Event.all.size)
       event = Event.all[input.to_i - 1]
       url = event.url
-
       # down load event's details, update event attributes & print event
       updated_details = self.climethods.fetch_event_details(url)
       updated_event = event.update_event_attributes(updated_details)
       self.climethods.print_event(updated_event)
       self.run_again
-    else
+    elsif input == '0'
       self.run
+    else
+      puts 'Good bye!'
     end
   end
 
   def run_again
-    puts "Select option '1' to view listing again or '0' to search again"
+    puts "Enter '1' to view listing again or '0' to search again"
     input = gets.chomp
     if input.to_i == 1
       self.print_meetup_events

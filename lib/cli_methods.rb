@@ -44,9 +44,11 @@ class CliMethods
   end
 
   def pick_meetup_event
-    puts 'Enter the number of the event you want more details on'
-    puts "Or enter '0' to search again"
-    gets.chomp
+      puts 'Enter the number of the event to view more details'
+      puts "Enter '0' to search again"
+      puts "To quit, hit 'enter'"
+      puts 'What would you like to do?'
+      gets.chomp
   end
 
   def print_events
