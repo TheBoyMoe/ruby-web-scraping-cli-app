@@ -1,8 +1,6 @@
 =begin
   url: https://en.wikipedia.org/wiki/List_of_members_of_the_Forbes_400
-
   url: 'https://www.meetup.com/find/events/?allMeetups=false&keywords=javascript&radius=2&userFreeform=London%2C+United+Kingdom'
-
 =end
 
 class Scraper
@@ -36,14 +34,21 @@ class Scraper
     items = doc.css('#event-content')
     event = {}
     items.each do |item|
-      event[:date] = item.css('#event-start-time h3').text
+      event[:date] = item.css('#event-when-display h3').text
       event_start_time = item.css('#event-start-time span').text
       event_end_time = item.css('#event-end-time span').text
-      event[:time] = "#{event_start_time} to #{event_end_time}"
-      event[:address] = item.css('#event-where-display .event-where-address').text.gsub(/\(map\)/, '').strip
+      if (event_end_time != '' || event_end_time != nil) && (event_start_time != '' || event_start_time != nil)
+        event[:time] = "#{event_start_time} to #{event_end_time}"
+      else
+        time = item.css('#event-when-display p').text
+        event[:time] = time if time != '' || time != nil  
+      end
+      address = item.css('#event-where-display .event-where-address').text.gsub(/\(map\)/, '').strip
+      address = 'Unknown' if address == '' || address == ' '
+      event[:address] = address
       description_text = ''
-      descs = item.css('#event-description-wrap p')
-      descs.each {|desc| description_text += desc.text.gsub(/â\u0080¢/, '') + ' '}
+      paragraphs = item.css('#event-description-wrap p')
+      paragraphs.each {|p| description_text += p.text.gsub(/â\u0080¢/, '') + "\n"}
       event[:description] = description_text.strip
     end
     event

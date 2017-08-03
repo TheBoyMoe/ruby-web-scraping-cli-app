@@ -24,7 +24,7 @@ describe 'CliMethods' do
     }
   ]}
 
-  let(:event_instance) {Event.new({
+  let(:event_instance) {Event.new.create_from_hash({
     title: 'Coding for everyone',
     organiser: 'Founders & Coders',
     date: 'Monday, July 31, 2017',

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Event' do
 
-  let!(:event){Event.new(
+  let!(:event){Event.new.create_from_hash(
     title: 'Coding for everyone',
     organiser: 'Founders & Coders',
     date: '2017-07-31T23:30:00+01:00',
@@ -29,9 +29,9 @@ describe 'Event' do
     Event.class_variable_set(:@@all, [])
   end
 
-  describe '#new' do
+  describe '.create_from_hash' do
     it 'takes an argument hash, sets the new event\'s attributes and returns an event instance' do
-      expect{Event.new({
+      expect{Event.new.create_from_hash({
         title: 'Coding for everyone',
         organiser: 'Founders & Coders',
         date: '2017-07-31T23:30:00+01:00',
@@ -39,6 +39,7 @@ describe 'Event' do
         num_attending: '19',
         url: 'https://www.meetup.com/founderscoders/events/241027536',
         location: 'Founders & Coders'})}.to_not raise_error
+
       expect(event.title).to eq('Coding for everyone')
       expect(event.organiser).to eq('Founders & Coders')
       expect(event.date).to eq('2017-07-31T23:30:00+01:00')
