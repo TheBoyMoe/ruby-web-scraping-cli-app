@@ -10,8 +10,7 @@ describe 'CliMethods' do
       date: '2017-07-28',
       time: '6:30 PM',
       num_attending: 19,
-      url: 'https://www.meetup.com/founderscoders/events/241027536',
-      location: 'Bethnel Green'
+      url: 'https://www.meetup.com/founderscoders/events/241027536'
     },
     {
       title: 'Ruby Hack Night',
@@ -19,8 +18,7 @@ describe 'CliMethods' do
       date: '2017-07-29T23:30:00+01:00',
       time: '6:30 PM',
       num_attending: 8,
-      url: 'https://www.meetup.com/ruby-hack-night/events/230852789',
-      location: 'Hoxton'
+      url: 'https://www.meetup.com/ruby-hack-night/events/230852789'
     }
   ]}
 
@@ -31,7 +29,6 @@ describe 'CliMethods' do
     time: '6:30 PM to 8:00 PM',
     num_attending: 19,
     url: 'https://www.meetup.com/founderscoders/events/241027536',
-    location: 'Bethnel Green',
     address: '14 Palmers Road, E2 0SY, London',
     description: "Come and join us for our regular Monday evening meetup and participate in any one of a number of peer-led JavaScript coding activities, including: • Free Code Camp projects • Solving and creating Codewars katas • Codecademy • Eloquent Javascript • CS50 This meetup is for everyone who wants to learn to code. During the meetup we encourage participants to work together with another meetup attendee on one laptop (pair programming). Students from the current cohort of Founders & Coders will be available for questions and support. Please note that laptops aren't provided, but since we encourage pair programming you are welcome to join us without a laptop and work with another participant. Founders and Coders, Code of Conduct: https://github.com/codingforeveryone/code-of-conduct Our community is dedicated to providing a harassment-free experience for everyone. We do not tolerate harassment of community members in any form. Participants violating these rules may be sanctioned or expelled from the event and any future events, as well as from the community itself."
   })}
@@ -56,7 +53,6 @@ describe 'CliMethods' do
       expect(events.first).to have_key(:title)
       expect(events.first).to have_key(:organiser)
       expect(events.first).to have_key(:url)
-      expect(events.first).to have_key(:location)
       expect(events.first).to have_key(:num_attending)
       expect(events.first).to have_key(:time)
       expect(events.first).to have_key(:date)
@@ -82,7 +78,6 @@ describe 'CliMethods' do
       expect($stdout).to receive(:puts).with('Time: 6:30 PM')
       expect($stdout).to receive(:puts).with('Number attending: 19')
       expect($stdout).to receive(:puts).with('Url: https://www.meetup.com/founderscoders/events/241027536')
-      expect($stdout).to receive(:puts).with('Location: Bethnel Green')
       expect($stdout).to receive(:puts).with('------------------------------')
       expect($stdout).to receive(:puts).with('------------------------------')
       expect($stdout).to receive(:puts).with('2. Ruby Hack Night')
@@ -91,7 +86,6 @@ describe 'CliMethods' do
       expect($stdout).to receive(:puts).with('Time: 6:30 PM')
       expect($stdout).to receive(:puts).with('Number attending: 8')
       expect($stdout).to receive(:puts).with('Url: https://www.meetup.com/ruby-hack-night/events/230852789')
-      expect($stdout).to receive(:puts).with('Location: Hoxton')
       expect($stdout).to receive(:puts).with('------------------------------')
 
       climethods.print_events
@@ -129,7 +123,6 @@ describe 'CliMethods' do
       expect($stdout).to receive(:puts).with('Date: Monday, July 31, 2017')
       expect($stdout).to receive(:puts).with('Time: 6:30 PM to 8:00 PM')
       expect($stdout).to receive(:puts).with('Number attending: 19')
-      expect($stdout).to receive(:puts).with('Location: Bethnel Green')
       expect($stdout).to receive(:puts).with('Address: 14 Palmers Road, E2 0SY, London')
       expect($stdout).to receive(:puts).with("Description: Come and join us for our regular Monday evening meetup and participate in any one of a number of peer-led JavaScript coding activities, including: • Free Code Camp projects • Solving and creating Codewars katas • Codecademy • Eloquent Javascript • CS50 This meetup is for everyone who wants to learn to code. During the meetup we encourage participants to work together with another meetup attendee on one laptop (pair programming). Students from the current cohort of Founders & Coders will be available for questions and support. Please note that laptops aren't provided, but since we encourage pair programming you are welcome to join us without a laptop and work with another participant. Founders and Coders, Code of Conduct: https://github.com/codingforeveryone/code-of-conduct Our community is dedicated to providing a harassment-free experience for everyone. We do not tolerate harassment of community members in any form. Participants violating these rules may be sanctioned or expelled from the event and any future events, as well as from the community itself.")
       expect($stdout).to receive(:puts).with('------------------------------')

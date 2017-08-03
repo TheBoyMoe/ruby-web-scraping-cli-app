@@ -24,7 +24,7 @@ class Scraper
         event[:time] = time
         event[:date] = item.css('time').attr('datetime').value
       end
-      event[:location] = item.css('.text--secondary')[1].css('a').text.strip
+      # event[:location] = item.css('.row-item')[1].css('.text--secondary a').text.strip
       event
     end
   end
@@ -44,7 +44,7 @@ class Scraper
         event[:time] = time if time != '' || time != nil
       end
       address = item.css('#event-where-display .event-where-address').text.gsub(/\(map\)/, '').strip
-      address = 'Unknown' if address == '' || address == ' '
+      address = 'Signup to view address' if address == nil || address == ''
       event[:address] = address
       description_text = ''
       paragraphs = item.css('#event-description-wrap p')

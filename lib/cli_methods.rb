@@ -38,7 +38,6 @@ class CliMethods
     puts "Date: #{event.date}"
     puts "Time: #{event.time}"
     puts "Number attending: #{event.num_attending}"
-    puts "Location: #{event.location}"
     puts "Address: #{event.address}"
     puts "Description: #{event.description}"
     puts '------------------------------'
@@ -59,7 +58,6 @@ class CliMethods
       puts "Time: #{event.time}"
       puts "Number attending: #{event.num_attending}"
       puts "Url: #{event.url}"
-      puts "Location: #{event.location}"
       puts "------------------------------"
     end
   end

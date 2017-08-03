@@ -8,8 +8,7 @@ describe 'Event' do
     date: '2017-07-31T23:30:00+01:00',
     time: '6:30 PM',
     num_attending: 19,
-    url: 'https://www.meetup.com/founderscoders/events/241027536',
-    location: 'Founders & Coders'
+    url: 'https://www.meetup.com/founderscoders/events/241027536'
   )}
 
   let!(:event_array) {[
@@ -37,8 +36,7 @@ describe 'Event' do
         date: '2017-07-31T23:30:00+01:00',
         time: '6:30 PM',
         num_attending: '19',
-        url: 'https://www.meetup.com/founderscoders/events/241027536',
-        location: 'Founders & Coders'})}.to_not raise_error
+        url: 'https://www.meetup.com/founderscoders/events/241027536'})}.to_not raise_error
 
       expect(event.title).to eq('Coding for everyone')
       expect(event.organiser).to eq('Founders & Coders')
@@ -46,7 +44,6 @@ describe 'Event' do
       expect(event.time).to eq('6:30 PM')
       expect(event.num_attending).to eq(19)
       expect(event.url).to eq('https://www.meetup.com/founderscoders/events/241027536')
-      expect(event.location).to eq('Founders & Coders')
     end
 
     it 'adds the new event to the event class collection' do

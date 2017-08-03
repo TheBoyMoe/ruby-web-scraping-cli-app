@@ -18,7 +18,6 @@ describe 'Scraper' do
       expect(scraped_events.first).to have_key(:title)
       expect(scraped_events.first).to have_key(:organiser)
       expect(scraped_events.first).to have_key(:url)
-      expect(scraped_events.first).to have_key(:location)
       expect(scraped_events.first).to have_key(:num_attending)
       expect(scraped_events.first).to have_key(:time)
       expect(scraped_events.first).to have_key(:date)

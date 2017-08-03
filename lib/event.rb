@@ -1,5 +1,5 @@
 class Event
-  attr_accessor :title, :date, :time, :url, :location, :num_attending, :organiser, :address, :description
+  attr_accessor :title, :date, :time, :url, :num_attending, :organiser, :address, :description
   @@all = []
 
   def create_from_hash(event_hash)
