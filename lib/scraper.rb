@@ -37,11 +37,11 @@ class Scraper
       event[:date] = item.css('#event-when-display h3').text
       event_start_time = item.css('#event-start-time span').text
       event_end_time = item.css('#event-end-time span').text
-      if (event_end_time != '' || event_end_time != nil) && (event_start_time != '' || event_start_time != nil)
+      if (event_end_time != nil && event_end_time != '') && (event_start_time != nil && event_start_time != '')
         event[:time] = "#{event_start_time} to #{event_end_time}"
       else
         time = item.css('#event-when-display p').text
-        event[:time] = time if time != '' || time != nil  
+        event[:time] = time if time != '' || time != nil
       end
       address = item.css('#event-where-display .event-where-address').text.gsub(/\(map\)/, '').strip
       address = 'Unknown' if address == '' || address == ' '
