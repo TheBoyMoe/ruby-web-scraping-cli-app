@@ -4,7 +4,7 @@
 =end
 
 class Scraper
-  # TODO - refactor url to accept entered fields, seach keyword and city
+  
   def self.fetch_meetup_list(url)
     doc = Nokogiri::HTML(open(url))
     items = doc.css('.searchResults .event-listing-container .event-listing')
