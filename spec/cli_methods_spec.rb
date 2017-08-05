@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'CliMethods' do
-  let(:climethods) {CliMethods.new}
+  let(:climethods) {MeetupScraper::CliMethods.new}
 
   let(:event_hashes) {[
     {
@@ -22,7 +22,7 @@ describe 'CliMethods' do
     }
   ]}
 
-  let(:event_instance) {Event.new.create_from_hash({
+  let(:event_instance) {MeetupScraper::Event.new.create_from_hash({
     title: 'Coding for everyone',
     organiser: 'Founders & Coders',
     date: 'Monday, July 31, 2017',
@@ -63,14 +63,14 @@ describe 'CliMethods' do
     it 'convert event hashes returned by search into collection of event instances' do
       event_instances = climethods.create_events_from_hashes(event_hashes)
       expect(event_instances).to be_a(Array)
-      expect(event_instances.first).to be_an_instance_of(Event)
+      expect(event_instances.first).to be_an_instance_of(MeetupScraper::Event)
     end
   end
 
   describe '#print_events' do
     it 'prints out events matching the search criteria returned by date' do
-      Event.class_variable_set(:@@all, [])
-      Event.create_from_collection(event_hashes)
+      MeetupScraper::Event.class_variable_set(:@@all, [])
+      MeetupScraper::Event.create_from_collection(event_hashes)
       expect($stdout).to receive(:puts).with('------------------------------')
       expect($stdout).to receive(:puts).with('1. Coding for everyone')
       expect($stdout).to receive(:puts).with('Organiser: Founders & Coders')
@@ -97,7 +97,7 @@ describe 'CliMethods' do
       allow(climethods).to receive(:gets).and_return('Testing for #pick_meetup_event')
       expect($stdout).to receive(:puts).with('Enter the number of the event to view more details')
       expect($stdout).to receive(:puts).with("Enter '0' to search again")
-      expect($stdout).to receive(:puts).with("To quit, hit 'enter'")
+      expect($stdout).to receive(:puts).with("To quit, enter 'exit'")
       expect($stdout).to receive(:puts).with('What would you like to do?')
       climethods.pick_meetup_event
     end

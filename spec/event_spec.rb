@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Event' do
 
-  let!(:event){Event.new.create_from_hash(
+  let!(:event){MeetupScraper::Event.new.create_from_hash(
     title: 'Coding for everyone',
     organiser: 'Founders & Coders',
     date: '2017-07-31T23:30:00+01:00',
@@ -25,12 +25,12 @@ describe 'Event' do
   }}
 
   after(:each) do
-    Event.class_variable_set(:@@all, [])
+    MeetupScraper::Event.class_variable_set(:@@all, [])
   end
 
   describe '.create_from_hash' do
     it 'takes an argument hash, sets the new event\'s attributes and returns an event instance' do
-      expect{Event.new.create_from_hash({
+      expect{MeetupScraper::Event.new.create_from_hash({
         title: 'Coding for everyone',
         organiser: 'Founders & Coders',
         date: '2017-07-31T23:30:00+01:00',
@@ -47,18 +47,18 @@ describe 'Event' do
     end
 
     it 'adds the new event to the event class collection' do
-      expect(Event.class_variable_get(:@@all).size).to eq(1)
-      expect(Event.class_variable_get(:@@all).first.title).to eq('Coding for everyone')
+      expect(MeetupScraper::Event.class_variable_get(:@@all).size).to eq(1)
+      expect(MeetupScraper::Event.class_variable_get(:@@all).first.title).to eq('Coding for everyone')
     end
   end
 
   describe '.create_from_collection' do
     it 'return a collection of event instances following scraping of meetup search results page' do
-      Event.class_variable_set(:@@all, [])
-      Event.create_from_collection(event_array)
-      expect(Event.class_variable_get(:@@all).size).to eq(3)
-      expect(Event.class_variable_get(:@@all).first.title).to eq('Coding for everyone')
-      expect(Event.class_variable_get(:@@all).last.title).to eq('Python for Business')
+      MeetupScraper::Event.class_variable_set(:@@all, [])
+      MeetupScraper::Event.create_from_collection(event_array)
+      expect(MeetupScraper::Event.class_variable_get(:@@all).size).to eq(3)
+      expect(MeetupScraper::Event.class_variable_get(:@@all).first.title).to eq('Coding for everyone')
+      expect(MeetupScraper::Event.class_variable_get(:@@all).last.title).to eq('Python for Business')
     end
   end
 

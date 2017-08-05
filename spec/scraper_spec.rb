@@ -13,7 +13,7 @@ describe 'Scraper' do
   describe '#fetch_meetup_list' do
     it 'is a class method that executes a search on the meetup.com home page and scrapes the resulting page, returning an array of event hashes' do
       url = './fixtures/meetup/index.html'
-      scraped_events = Scraper.fetch_meetup_list(url)
+      scraped_events = MeetupScraper::Scraper.fetch_meetup_list(url)
       expect(scraped_events).to be_a(Array)
       expect(scraped_events.first).to have_key(:title)
       expect(scraped_events.first).to have_key(:organiser)
@@ -27,7 +27,7 @@ describe 'Scraper' do
   describe '#fetch_event_details' do
     it 'is a class method that scrapes the event\'s description page, returning a hash of attributes describing an individual event' do
       event_url = './fixtures/meetup/event.html'
-      event_hash = Scraper.fetch_event_details(event_url)
+      event_hash = MeetupScraper::Scraper.fetch_event_details(event_url)
       expect(event_hash).to be_a(Hash)
       # expect(event_hash).to match(dummy_event_hash)
     end
