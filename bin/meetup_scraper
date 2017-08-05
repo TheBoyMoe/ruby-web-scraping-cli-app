@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+# require_relative '../config/environment'
+
+require 'bundler/setup'
+require 'meetup_scraper'
+
+# launch cli app
+MeetupScraper::CommandLineInterface.new.run

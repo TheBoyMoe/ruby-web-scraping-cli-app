@@ -1,8 +1,8 @@
-class CommandLineInterface
+class MeetupScraper::CommandLineInterface
   attr_reader :climethods
 
   def initialize
-    @climethods = CliMethods.new
+    @climethods = MeetupScraper::CliMethods.new
   end
 
   def run
@@ -13,7 +13,7 @@ class CommandLineInterface
   end
 
   def print_meetup_events
-    events = Event.all
+    events = MeetupScraper::Event.all
     while events.size < 1
       puts "Sorry, no matches found, try again."
       puts '------------------------------------'
@@ -26,8 +26,8 @@ class CommandLineInterface
 
   def print_meetup_event
     input = self.climethods.pick_meetup_event
-    if (input.to_i >= 1 && input.to_i <= Event.all.size)
-      event = Event.all[input.to_i - 1]
+    if (input.to_i >= 1 && input.to_i <= MeetupScraper::Event.all.size)
+      event = MeetupScraper::Event.all[input.to_i - 1]
       url = event.url
       # down load event's details, update event attributes & print event
       updated_details = self.climethods.fetch_event_details(url)
@@ -36,8 +36,11 @@ class CommandLineInterface
       self.run_again
     elsif input == '0'
       self.run
-    else
+    elsif input == 'exit'
       puts 'Good bye!'
+    else
+      puts 'Selection not recognised, try again'
+      print_meetup_event
     end
   end
 
@@ -46,8 +49,11 @@ class CommandLineInterface
     input = gets.chomp
     if input.to_i == 1
       self.print_meetup_events
-    else
+    elsif input == '0'
       self.run
+    else
+      puts 'Selection not recognised, try again' 
+      run_again
     end
   end
 

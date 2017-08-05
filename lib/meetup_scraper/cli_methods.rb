@@ -1,4 +1,4 @@
-class CliMethods
+class MeetupScraper::CliMethods
 
   # capture user input returning search url
   def get_user_input
@@ -17,17 +17,17 @@ class CliMethods
 
   # fetch the meetup events
   def search_meetup(url)
-    Scraper.fetch_meetup_list(url)
+    MeetupScraper::Scraper.fetch_meetup_list(url)
   end
 
   # create event instances
   def create_events_from_hashes(event_hashes)
-    Event.create_from_collection(event_hashes)
+    MeetupScraper::Event.create_from_collection(event_hashes)
   end
 
   # download the event's details
   def fetch_event_details(url)
-    Scraper.fetch_event_details(url)
+    MeetupScraper::Scraper.fetch_event_details(url)
   end
 
   # print event detatils
@@ -46,13 +46,13 @@ class CliMethods
   def pick_meetup_event
       puts 'Enter the number of the event to view more details'
       puts "Enter '0' to search again"
-      puts "To quit, hit 'enter'"
+      puts "To quit, enter 'exit'"
       puts 'What would you like to do?'
       gets.chomp
   end
 
   def print_events
-    Event.all.each_with_index do |event, i|
+    MeetupScraper::Event.all.each_with_index do |event, i|
       puts "------------------------------"
       puts "#{i + 1}. #{event.title}"
       puts "Organiser: #{event.organiser}"

@@ -1,3 +1,9 @@
+PATH
+  remote: .
+  specs:
+    meetup_scraper (0.1.0)
+      nokogiri (= 1.6.6.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -11,7 +17,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    require_all (1.4.0)
+    rake (10.4.2)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
       rspec-expectations (~> 3.4.0)
@@ -31,10 +37,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  nokogiri (= 1.6.6.2)
+  bundler (~> 1.15)
+  meetup_scraper!
   pry
-  require_all
-  rspec
+  rake (~> 10.0)
+  rspec (~> 3.0)
 
 BUNDLED WITH
    1.15.1

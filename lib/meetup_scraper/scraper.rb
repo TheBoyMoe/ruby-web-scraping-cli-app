@@ -1,10 +1,9 @@
 =begin
-  url: https://en.wikipedia.org/wiki/List_of_members_of_the_Forbes_400
   url: 'https://www.meetup.com/find/events/?allMeetups=false&keywords=javascript&radius=2&userFreeform=London%2C+United+Kingdom'
 =end
 
-class Scraper
-  
+class MeetupScraper::Scraper
+
   def self.fetch_meetup_list(url)
     doc = Nokogiri::HTML(open(url))
     items = doc.css('.searchResults .event-listing-container .event-listing')

@@ -1,4 +1,4 @@
-class Event
+class MeetupScraper::Event
   attr_accessor :title, :date, :time, :url, :num_attending, :organiser, :address, :description
   @@all = []
 
