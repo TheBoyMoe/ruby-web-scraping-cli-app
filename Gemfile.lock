@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    meetup_scraper (0.1.0)
+    meetup-scraper (0.1.0)
       nokogiri (= 1.6.6.2)
 
 GEM
@@ -38,10 +38,10 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.15)
-  meetup_scraper!
-  pry
+  meetup-scraper!
+  pry (~> 0)
   rake (~> 10.0)
   rspec (~> 3.0)
 
 BUNDLED WITH
-   1.15.1
+   1.15.3
