@@ -5,6 +5,7 @@ Examples:
 2. [World's bes restuarant CLI gem](https://github.com/dannyd4315/worlds-best-restaurants-cli-gem)  
 3. [Daily Deal CLI gem](https://github.com/learn-co-curriculum/daily_deal)  
 4. [Build a CLI gem using TDD and JSON](https://github.com/aviflombaum/seatgeek_cli)
+5. [Latest games cli gem](https://github.com/lukeymac/latest-games-cli-gem)
 
 Articles:
 1. [Guide to using nokogiri to scrape a web site](http://ruby.bastardsbook.com/chapters/html-parsing/)   
@@ -25,3 +26,4 @@ YouTube videos:
 8. [Scrap Craigs list](https://www.youtube.com/watch?v=4TpBH5z8EXA)
 9. [Create and deploy a Ruby Gem from scratch](https://www.youtube.com/watch?v=PrvYJzCBNnU)  
 10. [Build a CLI Gem with TDD and JSON](https://www.youtube.com/watch?v=LJBU8lsNwJk)  
+11. [Ruby gem walk through](https://www.youtube.com/watch?v=luPZKmYbYTI)
