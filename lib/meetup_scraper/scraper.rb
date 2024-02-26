@@ -5,7 +5,7 @@
 class MeetupScraper::Scraper
 
   def self.fetch_meetup_list(url)
-    doc = Nokogiri::HTML(open(url))
+    doc = Nokogiri::HTML(URI.open(url))
     items = doc.css('.searchResults .event-listing-container .event-listing')
 
     items.collect do |item|
@@ -29,7 +29,7 @@ class MeetupScraper::Scraper
   end
 
   def self.fetch_event_details(url)
-    doc = Nokogiri::HTML(open(url))
+    doc = Nokogiri::HTML(URI.open(url))
     items = doc.css('#event-content')
     event = {}
     items.each do |item|
